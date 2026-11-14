@@ -1,0 +1,52 @@
+[project]
+name = "demonstrator-experiments"
+version = "0.1.0"
+description = "Circuits, experiment workflows, and results using the local quantum toolchain"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "guppylang==1.1.3",
+    "guppylang-internals==1.1.3",
+    "hugr==0.18.8",
+    "ipykernel>=7.3.0,<8",
+    "jupyterlab>=4,<5",
+    "matplotlib>=3.10.9,<4",
+    "numpy>=2,<3",
+    "pydantic>=2,<3",
+    "pygridsynth==2.0.0",
+    "pytket==2.18.3",
+    "pytket-qiskit[aer]==0.78.0",
+    "qiskit==2.5.2",
+    "qiskit-gridsynth-plugin==0.0.8",
+    "selene-core==0.3.3",
+    "selene-sim==0.3.7",
+    "stim>=1.15,<2",
+    "sympy>=1.14,<2",
+    "tket-exts==0.14.3",
+    "tqdm>=4.67.1,<5",
+]
+
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+# An editable installation of this configuration adds the neighbouring source
+# directories to this environment's import path. It builds no sibling projects
+# and does not import their dependency pins or use their virtual environments.
+[tool.hatch.build]
+dev-mode-dirs = [
+    ".",
+    "../helix-logical-compiler/python",
+    "../ReTrace",
+    "../selene-retrace",
+    "../selene-retrace/qis-interface/python",
+    "../selene-retrace/retrace-runtime/python",
+    "../selene-retrace/retrace-qis-compiler/python",
+    "../qecc-20_2_6",
+]
+
+[tool.hatch.build.targets.wheel]
+bypass-selection = true
+
+[tool.hatch.build.targets.sdist]
+only-include = ["README.md", "pyproject.toml", ".python-version"]

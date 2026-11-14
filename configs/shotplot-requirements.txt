@@ -1,0 +1,9 @@
+# Deferred until Quantinuum JFrog access is available.
+# Package index: https://quantinuumsw.jfrog.io/artifactory/api/pypi/pypi_local/simple
+# These packages are not part of the current environment or uv.lock.
+# When access is available, add them and their explicit index sources to
+# pyproject.toml, then regenerate uv.lock and synchronise with uv.
+eldarion==0.11.0
+selene-anduril==0.10.4
+selene-eldarion==0.10.5
+shotplot==0.1.4
