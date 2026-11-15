@@ -1,5 +1,8 @@
 # Circuit optimization
 
+For tracing and resource estimation with the same optimization settings, see
+[run_selene-retrace](SELENE_RETRACE.md).
+
 Run from the repository root, using the existing uv environment:
 
 ```sh

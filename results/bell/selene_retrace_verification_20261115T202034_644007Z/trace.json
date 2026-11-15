@@ -1,0 +1,217 @@
+{
+  "schema_version": "0.1.0",
+  "events": [
+    {
+      "source": {
+        "kind": "UserProgram",
+        "index": 0
+      },
+      "event": {
+        "kind": "Gate",
+        "qubits": [
+          0
+        ],
+        "gate_name": "QAlloc",
+        "params": [],
+        "predicates": []
+      }
+    },
+    {
+      "source": {
+        "kind": "UserProgram",
+        "index": 1
+      },
+      "event": {
+        "kind": "Reset",
+        "qubit": 0
+      }
+    },
+    {
+      "source": {
+        "kind": "UserProgram",
+        "index": 2
+      },
+      "event": {
+        "kind": "Gate",
+        "qubits": [
+          1
+        ],
+        "gate_name": "QAlloc",
+        "params": [],
+        "predicates": []
+      }
+    },
+    {
+      "source": {
+        "kind": "UserProgram",
+        "index": 3
+      },
+      "event": {
+        "kind": "Reset",
+        "qubit": 1
+      }
+    },
+    {
+      "source": {
+        "kind": "UserProgram",
+        "index": 4
+      },
+      "event": {
+        "kind": "Custom",
+        "payload": {
+          "kind": "OpaquePayload",
+          "tag": "0x12E712ACE07A6000",
+          "data": "eyJvcCI6ICJoIiwgInF1Yml0cyI6IFswXX0="
+        }
+      }
+    },
+    {
+      "source": {
+        "kind": "UserProgram",
+        "index": 5
+      },
+      "event": {
+        "kind": "Custom",
+        "payload": {
+          "kind": "OpaquePayload",
+          "tag": "0x12E712ACE07A6000",
+          "data": "eyJvcCI6ICJjeCIsICJxdWJpdHMiOiBbMCwgMV19"
+        }
+      }
+    },
+    {
+      "source": {
+        "kind": "UserProgram",
+        "index": 6
+      },
+      "event": {
+        "kind": "Measurement",
+        "qubit": 0
+      }
+    },
+    {
+      "source": {
+        "kind": "UserProgram",
+        "index": 7
+      },
+      "event": {
+        "kind": "Gate",
+        "qubits": [
+          0
+        ],
+        "gate_name": "QFree",
+        "params": [],
+        "predicates": []
+      }
+    },
+    {
+      "source": {
+        "kind": "UserProgram",
+        "index": 8
+      },
+      "event": {
+        "kind": "Measurement",
+        "qubit": 0
+      }
+    },
+    {
+      "source": {
+        "kind": "Runtime",
+        "start_time": 0,
+        "end_time": 0
+      },
+      "event": {
+        "kind": "Measurement",
+        "qubit": 0
+      }
+    },
+    {
+      "source": {
+        "kind": "ErrorModel",
+        "index": 0
+      },
+      "event": {
+        "kind": "Measurement",
+        "qubit": 0
+      }
+    },
+    {
+      "source": {
+        "kind": "Simulator",
+        "index": 0,
+        "duration_ns": 1083
+      },
+      "event": {
+        "kind": "Measurement",
+        "qubit": 0
+      }
+    },
+    {
+      "source": {
+        "kind": "UserProgram",
+        "index": 9
+      },
+      "event": {
+        "kind": "Measurement",
+        "qubit": 1
+      }
+    },
+    {
+      "source": {
+        "kind": "UserProgram",
+        "index": 10
+      },
+      "event": {
+        "kind": "Gate",
+        "qubits": [
+          1
+        ],
+        "gate_name": "QFree",
+        "params": [],
+        "predicates": []
+      }
+    },
+    {
+      "source": {
+        "kind": "UserProgram",
+        "index": 11
+      },
+      "event": {
+        "kind": "Measurement",
+        "qubit": 1
+      }
+    },
+    {
+      "source": {
+        "kind": "Runtime",
+        "start_time": 0,
+        "end_time": 0
+      },
+      "event": {
+        "kind": "Measurement",
+        "qubit": 1
+      }
+    },
+    {
+      "source": {
+        "kind": "ErrorModel",
+        "index": 1
+      },
+      "event": {
+        "kind": "Measurement",
+        "qubit": 1
+      }
+    },
+    {
+      "source": {
+        "kind": "Simulator",
+        "index": 1,
+        "duration_ns": 416
+      },
+      "event": {
+        "kind": "Measurement",
+        "qubit": 1
+      }
+    }
+  ]
+}

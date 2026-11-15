@@ -1,0 +1,18 @@
+{
+  "records": [
+    {
+      "is_leakage_measurement": false,
+      "qubit": 0,
+      "value": 0
+    },
+    {
+      "is_leakage_measurement": false,
+      "qubit": 1,
+      "value": 0
+    }
+  ],
+  "replay_values": [
+    false,
+    false
+  ]
+}

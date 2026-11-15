@@ -45,6 +45,18 @@ extended passes, export limitations and Python usage.
 
 ## Circuit files and outputs
 
+To trace one execution path and pass its gate batches to the sibling ReTrace
+resource estimator, use:
+
+```sh
+uv run python run_selene-retrace circuits/bell.py --trace-qubits 2 --code surface --distance 5
+```
+
+This includes the circuit optimization choices, an abort-or-continue check for
+ReTrace's `hybridpFT` branch, configurable estimator settings and saved execution
+records. See [the tracing and resource-estimation guide](workflows/SELENE_RETRACE.md).
+Tracing uses Coinflip or replay, separately from quantum-state simulation.
+
 A `.py` circuit file defines an argument-free Guppy entrypoint called `main`.
 Use `--entrypoint NAME` to select another definition. Keep circuit files safe to
 import: define circuits and helpers there, and start execution through the

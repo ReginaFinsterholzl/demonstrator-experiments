@@ -1,0 +1,91 @@
+{
+  "created_utc": "2026-11-15T20:20:34.644007+00:00",
+  "flatten_batches": false,
+  "notes": [
+    "One application path; scheduler samples do not sample new application paths.",
+    "Coinflip/replay answers are not quantum-state probabilities.",
+    "ReTrace hardware and unlisted scheduler settings retain the checked version's defaults."
+  ],
+  "packages": {
+    "guppylang": "1.1.3",
+    "guppylang-internals": "1.1.3",
+    "hugr": "0.18.8",
+    "numpy": "2.3.5",
+    "pytket": "2.18.3",
+    "qiskit": "2.5.2",
+    "selene-core": "0.3.3",
+    "selene-sim": "0.3.7",
+    "tket": "0.15.15"
+  },
+  "qec": {
+    "code": "surface",
+    "distance": 5,
+    "level": null
+  },
+  "repositories": {
+    "ReTrace": {
+      "branch": "hybridpFT",
+      "commit": "b1a0c4c655bbc149a49bdde35b6c3c2eefa79056",
+      "continued_on_other_branch": false,
+      "dirty": false,
+      "expected_branch": "hybridpFT",
+      "path": "/Users/regina.finsterholzl/Projects/ReTrace"
+    },
+    "demonstrator-experiments": {
+      "branch": "main",
+      "commit": "ab5e5e70eaf75685ebc871d021fc07885c5a6821",
+      "dirty": true,
+      "path": "/Users/regina.finsterholzl/Projects/demonstrator-experiments"
+    },
+    "selene-retrace": {
+      "branch": "main",
+      "commit": "8b56c41ed5c44f3c9a4eb509ac3bcad6e1cd2738",
+      "dirty": true,
+      "path": "/Users/regina.finsterholzl/Projects/selene-retrace"
+    }
+  },
+  "retrace_kwargs": {
+    "allow_jumping": true,
+    "careful_alloc": true,
+    "debug": false,
+    "demand_factor": 1,
+    "demand_ramping": null,
+    "num_qubits": 1500,
+    "num_samples": 1,
+    "perform_ec_on_resource_states": false,
+    "seed": 43,
+    "seed_increment": true,
+    "space_optimized": true,
+    "synth_accuracy": 0.01
+  },
+  "retrace_options": {
+    "allow_jumping": true,
+    "careful_alloc": true,
+    "debug": false,
+    "demand_factor": 1,
+    "demand_ramping": null,
+    "num_samples": 1,
+    "perform_ec_on_resource_states": false,
+    "physical_qubits": 1500,
+    "seed": 43,
+    "seed_increment": true,
+    "space_optimized": true,
+    "synthesis_accuracy": 0.01
+  },
+  "source": {
+    "entrypoint": "main",
+    "extended_passes": [],
+    "format": "guppy",
+    "optimisation": "none",
+    "path": "/Users/regina.finsterholzl/Projects/demonstrator-experiments/circuits/bell.py",
+    "sha256": "665de9f7e2467e7cbcf59466c977b984d17c0ee8fec41f8c391dccd4db095fd2"
+  },
+  "trace": {
+    "mode": "coinflip",
+    "quantum_state_simulation": false,
+    "qubit_limit": 2,
+    "seed": 43,
+    "shots": 1,
+    "supplied_measurements": null
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "depth_unit_seconds": 0.03,
+  "max_idling_time_exceeded": [
+    false
+  ],
+  "mean_depth": 11.0,
+  "mean_modeled_logical_error_probability": 8.66666639565139e-08,
+  "mean_postselection_discard_probability": 0.0,
+  "mean_runtime_seconds": 0.32999999999999996,
+  "num_samples": 1,
+  "peak_allocated_physical_qubits": 98,
+  "qec_model": "SurfaceCode (d = 5) with EC style BSE",
+  "sample_depths": [
+    11
+  ],
+  "sample_modeled_logical_error_probabilities": [
+    8.66666639565139e-08
+  ],
+  "sample_postselection_discard_probabilities": [
+    0
+  ],
+  "sample_runtime_seconds": [
+    0.32999999999999996
+  ],
+  "std_depth": 0.0,
+  "std_modeled_logical_error_probability": 0.0,
+  "std_runtime_seconds": 0.0,
+  "trace_summary": {
+    "batch_operation_counts": [
+      {
+        "Measure": 1,
+        "QAlloc": 2,
+        "QFree": 1,
+        "Reset": 2,
+        "cx": 1,
+        "h": 1
+      },
+      {
+        "Measure": 1,
+        "QFree": 1
+      }
+    ],
+    "batches": 2,
+    "measurement_answers": 2,
+    "note": "Counts include allocation/freeing, reset and measurement entries.",
+    "operation_counts": {
+      "Measure": 2,
+      "QAlloc": 2,
+      "QFree": 2,
+      "Reset": 2,
+      "cx": 1,
+      "h": 1
+    },
+    "raw_events": 18
+  },
+  "wall_time_seconds": {
+    "load_compile_and_trace": 3.163910124974791,
+    "resource_estimation": 3.5794795420079026
+  }
+}

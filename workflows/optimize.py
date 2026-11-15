@@ -27,9 +27,10 @@ class PreparedCircuit:
     export_note: str | None = None
 
 
-def add_optimization_arguments(parser: argparse.ArgumentParser) -> None:
-    parser.add_argument("--optimization", choices=LEVELS, default=None,
-                        help="Default for source circuits; preserve saved HUGR/wrappers unless explicitly selected")
+def add_optimization_arguments(parser: argparse.ArgumentParser, *, default: str | None = None) -> None:
+    help_text = ("Default for source circuits; preserve saved HUGR/wrappers unless explicitly selected"
+                 if default is None else "Optional circuit optimization after loading")
+    parser.add_argument("--optimization", choices=LEVELS, default=default, help=help_text)
     parser.add_argument("--extended-pass", dest="extended_passes", action="append",
                         choices=EXTENDED_PASSES,
                         help="With extended: choose a pass; repeat to set order. Default: all three in listed order")

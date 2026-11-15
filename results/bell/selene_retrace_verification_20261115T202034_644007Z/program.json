@@ -1,0 +1,83 @@
+{
+  "gate_batches": [
+    {
+      "gates": [
+        {
+          "angles": [],
+          "operation": "QAlloc",
+          "qubits": [
+            0
+          ]
+        },
+        {
+          "angles": [],
+          "operation": "Reset",
+          "qubits": [
+            0
+          ]
+        },
+        {
+          "angles": [],
+          "operation": "QAlloc",
+          "qubits": [
+            1
+          ]
+        },
+        {
+          "angles": [],
+          "operation": "Reset",
+          "qubits": [
+            1
+          ]
+        },
+        {
+          "angles": [],
+          "operation": "h",
+          "qubits": [
+            0
+          ]
+        },
+        {
+          "angles": [],
+          "operation": "cx",
+          "qubits": [
+            0,
+            1
+          ]
+        },
+        {
+          "angles": [],
+          "operation": "QFree",
+          "qubits": [
+            0
+          ]
+        },
+        {
+          "angles": [],
+          "operation": "Measure",
+          "qubits": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "gates": [
+        {
+          "angles": [],
+          "operation": "QFree",
+          "qubits": [
+            1
+          ]
+        },
+        {
+          "angles": [],
+          "operation": "Measure",
+          "qubits": [
+            1
+          ]
+        }
+      ]
+    }
+  ]
+}

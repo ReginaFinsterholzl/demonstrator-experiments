@@ -1,0 +1,28 @@
+{
+  "batch_operation_counts": [
+    {
+      "Measure": 1,
+      "QAlloc": 2,
+      "QFree": 1,
+      "Reset": 2,
+      "cx": 1,
+      "h": 1
+    },
+    {
+      "Measure": 1,
+      "QFree": 1
+    }
+  ],
+  "batches": 2,
+  "measurement_answers": 2,
+  "note": "Counts include allocation/freeing, reset and measurement entries.",
+  "operation_counts": {
+    "Measure": 2,
+    "QAlloc": 2,
+    "QFree": 2,
+    "Reset": 2,
+    "cx": 1,
+    "h": 1
+  },
+  "raw_events": 18
+}
