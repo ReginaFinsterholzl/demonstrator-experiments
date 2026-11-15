@@ -22,6 +22,7 @@ def simulate(
     simulator: str = "stim", seed: int = 0, runtime: str = "simple",
     noise: dict[str, float] | None = None, output_dir: str | Path | None = None,
     entrypoint: str = "main",
+    optimization: str | None = None, extended_passes: list[str] | None = None,
 ) -> Path:
     """Run shots and return the directory containing the compiled circuit and results."""
     validate_run(n_qubits, shots, seed)
@@ -44,7 +45,7 @@ def simulate(
         runtime_plugin = anduril.AndurilRuntimePlugin()
 
     started = perf_counter()
-    hugr, source = compile_circuit(circuit, entrypoint)
+    hugr, source = compile_circuit(circuit, entrypoint, optimization, extended_passes)
     directory = new_run_dir("simulation", circuit, output_dir)
     (directory / "circuit.hugr").write_bytes(hugr)
     try:
@@ -109,7 +110,8 @@ def main(argv: list[str] | None = None) -> int:
         directory = simulate(args.circuit, n_qubits=args.qubits, shots=args.shots,
                              simulator=args.simulator, seed=args.seed, runtime=args.runtime,
                              noise=noise_from_args(args), output_dir=args.output,
-                             entrypoint=args.entrypoint)
+                             entrypoint=args.entrypoint, optimization=args.optimization,
+                             extended_passes=args.extended_passes)
     except WorkflowError as error:
         print(f"Error: {error}", file=sys.stderr)
         return 2

@@ -4,14 +4,11 @@ from __future__ import annotations
 
 import argparse
 from datetime import datetime, timezone
-import hashlib
 import importlib
 import importlib.metadata
-import importlib.util
 import json
 import math
 from pathlib import Path
-import sys
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,36 +44,14 @@ def make_noise_model(noise: dict[str, float]):
     return DepolarizingErrorModel(**noise)
 
 
-def compile_circuit(circuit: str | Path, entrypoint: str = "main") -> tuple[bytes, dict]:
-    """Load an import-safe Guppy definition or an existing HUGR envelope."""
-    path = Path(circuit).expanduser().resolve()
-    if not path.is_file():
-        raise WorkflowError(f"Circuit file does not exist: {path}")
-    content = path.read_bytes()
-    source = {"path": str(path), "sha256": hashlib.sha256(content).hexdigest()}
-    if path.suffix == ".hugr":
-        return content, source | {"format": "hugr"}
-    if path.suffix != ".py":
-        raise WorkflowError("Choose a .py Guppy circuit or a compiled .hugr file.")
+def compile_circuit(circuit: str | Path, entrypoint: str = "main",
+                    optimization: str | None = None,
+                    extended_passes: list[str] | None = None) -> tuple[bytes, dict]:
+    """Use the optimizer's shared loader; this writes no circuit exports."""
+    from workflows.optimize import prepare_circuit
 
-    # A unique name avoids the neighbouring ReTrace package also called circuits.
-    module_name = "_demonstrator_circuit_" + hashlib.sha256(str(path).encode()).hexdigest()[:16]
-    spec = importlib.util.spec_from_file_location(module_name, path)
-    if spec is None or spec.loader is None:
-        raise WorkflowError(f"Cannot load circuit: {path}")
-    module = importlib.util.module_from_spec(spec)
-    sys.modules[module_name] = module
-    try:
-        spec.loader.exec_module(module)
-        program = getattr(module, entrypoint, None)
-        if program is None or not callable(getattr(program, "compile", None)):
-            raise WorkflowError(f"{path.name} must define a Guppy entrypoint named {entrypoint!r}.")
-        hugr = program.compile().to_bytes()
-    except WorkflowError:
-        raise
-    except Exception as error:
-        raise WorkflowError(f"Could not compile {path.name}: {error}") from error
-    return hugr, source | {"format": "guppy", "entrypoint": entrypoint, "optimisation": "Guppy default"}
+    prepared = prepare_circuit(circuit, entrypoint, optimization, extended_passes)
+    return prepared.hugr, prepared.source
 
 
 def optional_module(name: str, purpose: str):
@@ -111,7 +86,7 @@ def write_json(path: Path, value: Any) -> None:
 def package_versions() -> dict[str, str]:
     versions = {}
     for name in ["guppylang", "guppylang-internals", "hugr", "selene-sim", "selene-core",
-                 "pytket", "numpy", "shotplot", "selene-anduril", "selene-eldarion", "eldarion"]:
+                 "pytket", "tket", "qiskit", "numpy", "shotplot", "selene-anduril", "selene-eldarion", "eldarion"]:
         try:
             versions[name] = importlib.metadata.version(name)
         except importlib.metadata.PackageNotFoundError:
@@ -120,7 +95,10 @@ def package_versions() -> dict[str, str]:
 
 
 def add_arguments(parser: argparse.ArgumentParser, *, plotting: bool = False) -> None:
-    parser.add_argument("circuit", type=Path, help="Import-safe Guppy .py file or compiled .hugr")
+    from workflows.optimize import add_optimization_arguments
+
+    parser.add_argument("circuit", type=Path, help="Guppy .py, .hugr, trusted pickle or pytket JSON")
+    add_optimization_arguments(parser)
     parser.add_argument("--entrypoint", default="main", help="Guppy definition in a .py file (default: main)")
     parser.add_argument("--qubits", type=int, required=True, help="Maximum live simulator qubits")
     parser.add_argument("--shots", type=int, default=1 if plotting else 1000)

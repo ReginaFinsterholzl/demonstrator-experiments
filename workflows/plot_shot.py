@@ -22,6 +22,7 @@ def plot_shot(
     seed: int | None = None, coinflip_bias: float = 0.0,
     noise: dict[str, float] | None = None, output_dir: str | Path | None = None,
     entrypoint: str = "main", show: bool = False,
+    optimization: str | None = None, extended_passes: list[str] | None = None,
 ) -> Path:
     """Save PNG/PDF figures and settings; requires private plotting packages."""
     validate_run(n_qubits, shots, seed)
@@ -53,7 +54,7 @@ def plot_shot(
             raise WorkflowError("This ShotPlot API exposes no error_model argument; noisy plotting is unavailable.")
         kwargs["error_model"] = make_noise_model(noise_values)
 
-    hugr, source = compile_circuit(circuit, entrypoint)
+    hugr, source = compile_circuit(circuit, entrypoint, optimization, extended_passes)
     directory = new_run_dir("shotplot", circuit, output_dir)
     (directory / "circuit.hugr").write_bytes(hugr)
     import matplotlib.pyplot as plt
@@ -111,7 +112,8 @@ def main(argv: list[str] | None = None) -> int:
         directory = plot_shot(args.circuit, n_qubits=args.qubits, shots=args.shots,
                               simulator=args.simulator, seed=args.seed,
                               coinflip_bias=args.coinflip_bias, noise=noise_from_args(args),
-                              output_dir=args.output, entrypoint=args.entrypoint, show=args.show)
+                              output_dir=args.output, entrypoint=args.entrypoint, show=args.show,
+                              optimization=args.optimization, extended_passes=args.extended_passes)
     except WorkflowError as error:
         print(f"Error: {error}", file=sys.stderr)
         return 2

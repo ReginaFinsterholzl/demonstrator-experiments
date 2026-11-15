@@ -1,0 +1,32 @@
+{
+  "created_utc": "2026-11-15T10:17:55.740559+00:00",
+  "source": {
+    "path": "/Users/regina.finsterholzl/Projects/demonstrator-experiments/circuits/qpde/ethylene_se_qubitized_qpe_5phase_raw.pkl",
+    "sha256": "d206568c65e27f5c84d3530953f4a71a30e2412dbd8e5f0e3b66b7ba47cfbbe3",
+    "format": "pickle",
+    "optimisation": "default",
+    "extended_passes": [],
+    "pytket_gates_before": 5005,
+    "pytket_gates_after": 4917,
+    "n_qubits": 13,
+    "n_bits": 5
+  },
+  "packages": {
+    "guppylang": "1.1.3",
+    "guppylang-internals": "1.1.3",
+    "hugr": "0.18.8",
+    "selene-sim": "0.3.7",
+    "selene-core": "0.3.3",
+    "pytket": "2.18.3",
+    "tket": "0.15.15",
+    "qiskit": "2.5.2",
+    "numpy": "2.3.5"
+  },
+  "files": {
+    "hugr": "ethylene_se_qubitized_qpe_5phase_raw_default.hugr",
+    "report": "ethylene_se_qubitized_qpe_5phase_raw_default.optimization.json",
+    "pytket": "ethylene_se_qubitized_qpe_5phase_raw_default.json",
+    "guppy": "ethylene_se_qubitized_qpe_5phase_raw_default.py"
+  },
+  "export_note": null
+}

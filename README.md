@@ -29,6 +29,20 @@ local model, not a calibrated Helios hardware model.
 Use `--help` on either workflow for its arguments. For notebooks, run
 `uv run jupyter lab` and select this environment's Python interpreter.
 
+## Circuit optimization
+
+```sh
+uv run python -m workflows.optimize circuits/qpde/h2_1qubit_qpe_1phase_raw.pkl --optimization default
+```
+
+The optimizer accepts trusted pickle files, Guppy, compiled HUGR and pytket JSON.
+It saves HUGR, pytket JSON and a runnable Guppy wrapper beside the original where
+faithful export is supported, plus an optimization report. Existing files are
+preserved. Choose `none`, `minimal`, `classical`, `default` or `extended`.
+Both simulation and ShotPlot accept `--optimization none` to bypass optional
+optimization. See [the short optimization guide](workflows/README.md) for modes,
+extended passes, export limitations and Python usage.
+
 ## Circuit files and outputs
 
 A `.py` circuit file defines an argument-free Guppy entrypoint called `main`.
@@ -37,7 +51,9 @@ import: define circuits and helpers there, and start execution through the
 workflow. The provided examples do not run simulations when imported.
 
 Both workflows also accept an existing `.hugr` file, so simulation and plotting
-can reuse the same compiled circuit. Python files are loaded by file path; this
+can reuse the same compiled circuit, plus trusted pytket/Qiskit pickles and pytket
+JSON. Saved HUGR and generated Guppy wrappers are preserved unless optimization
+is explicitly requested; ordinary source circuits use `default`. Python files are loaded by file path; this
 avoids the neighbouring ReTrace library's separate package also named `circuits`.
 
 Each simulation creates a new directory under `results/<circuit>/` containing:
@@ -100,7 +116,7 @@ compatibility still needs a real test when access is available.
 | Folder | Purpose |
 | --- | --- |
 | `circuits/` | Import-safe circuit definitions and saved circuit representations |
-| `workflows/` | Simulation, optional ShotPlot, and their small shared utilities |
+| `workflows/` | Circuit optimization, simulation, optional ShotPlot and shared utilities |
 | `configs/` | Experiment settings and deferred private-package requirements |
 | `notebooks/` | Interactive experiments and analysis |
 | `results/` | Simulation output grouped by circuit and run |
@@ -135,7 +151,9 @@ outside the current workflows.
 uv run python -m unittest discover -s tests -v
 ```
 
-The checks use small unencoded circuits: Bell correlations with Stim, reuse of a
+The checks include exact matrix comparisons including global phase, circuit
+format round trips, optimization bypass and protection of existing files. They
+also use small unencoded circuits: Bell correlations with Stim, reuse of a
 compiled HUGR, the analytic Rz probability with QuEST, measurement noise,
 postselection accounting, unsupported Stim rotations, and unavailable private
 packages. Numerical runs and build files use temporary directories. Private-mode
